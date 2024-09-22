@@ -1,4 +1,5 @@
-from src.masks import get_mask_card_number, get_mask_account
+from src.masks import get_mask_account, get_mask_card_number
+
 
 def main():
     """
@@ -19,6 +20,7 @@ def main():
         print(f"Маскированный номер счета: {masked_account}")
     except ValueError as e:
         print(f"Ошибка: {e}")
+
 
 if __name__ == "__main__":
     main()
