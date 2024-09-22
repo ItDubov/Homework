@@ -19,6 +19,6 @@ def get_mask_account(account_number: int) -> str:
     :return: Маскированный номер счета в виде строки
     """
     account_str = str(account_number)
-    if len(account_str) != 8:
+    if len(account_str) != 20:
         raise ValueError("Номер счета должен содержать 8 цифр.")
     return f"**{account_str[2:]}"
