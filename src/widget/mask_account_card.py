@@ -1,4 +1,6 @@
-from src.masks import get_mask_card_number, get_mask_account
+from datetime import datetime
+
+from src.masks import get_mask_account, get_mask_card_number
 
 
 def mask_account_card(data: str) -> str:
@@ -28,7 +30,6 @@ def mask_account_card(data: str) -> str:
     else:
         raise ValueError("Неизвестный тип счета или карты")
 
-from datetime import datetime
 
 def get_date(date_str: str) -> str:
     """

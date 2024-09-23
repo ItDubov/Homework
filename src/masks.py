@@ -20,5 +20,5 @@ def get_mask_account(account_number: int) -> str:
     """
     account_str = str(account_number)
     if len(account_str) != 20:
-        raise ValueError("Номер счета должен содержать 8 цифр.")
-    return f"**{account_str[2:]}"
+        raise ValueError("Номер счета должен содержать 20 цифр.")
+    return f"**{account_str[18:]}"
