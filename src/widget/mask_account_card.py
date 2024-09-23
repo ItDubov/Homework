@@ -27,3 +27,15 @@ def mask_account_card(data: str) -> str:
         return f"{' '.join(parts[:-1])} {get_mask_account(int(number))}"
     else:
         raise ValueError("Неизвестный тип счета или карты")
+
+from datetime import datetime
+
+def get_date(date_str: str) -> str:
+    """
+    Преобразует строку с датой из формата ISO в формат ДД.ММ.ГГГГ.
+
+    :param date_str: Дата в формате "2024-03-11T02:26:18.671407"
+    :return: Дата в формате "11.03.2024"
+    """
+    date = datetime.fromisoformat(date_str)
+    return date.strftime("%d.%m.%Y")
