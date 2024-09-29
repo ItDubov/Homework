@@ -1,11 +1,12 @@
 from src.masks import get_mask_account, get_mask_card_number
-
 from src.widget.mask_account_card import mask_account_card, get_date
+from src.processing.processing import filter_by_state, sort_by_date
 
 
 def main():
     """
-    Основная функция для демонстрации работы функций маскирования.
+    Основная функция для демонстрации работы различных функций:
+    маскирования, фильтрации и сортировки данных.
     """
     # Пример использования функции get_mask_card_number
     try:
@@ -23,7 +24,7 @@ def main():
     except ValueError as e:
         print(f"Ошибка: {e}")
 
-        # Пример использования функции mask_account_card
+    # Пример использования функции mask_account_card
     try:
         card_info = "Visa Platinum 7000792289606361"
         masked_info = mask_account_card(card_info)
@@ -35,13 +36,37 @@ def main():
     except ValueError as e:
         print(f"Ошибка: {e}")
 
-        # Пример использования функции get_date
+    # Пример использования функции get_date
     try:
         date_str = "2024-03-11T02:26:18.671407"
         formatted_date = get_date(date_str)
         print(f"Отформатированная дата: {formatted_date}")
     except ValueError as e:
         print(f"Ошибка: {e}")
+
+    # Демонстрация работы функций filter_by_state и sort_by_date
+    data = [
+        {'id': 41428829, 'state': 'EXECUTED', 'date': '2019-07-03T18:35:29.512364'},
+        {'id': 939719570, 'state': 'EXECUTED', 'date': '2018-06-30T02:08:58.425572'},
+        {'id': 594226727, 'state': 'CANCELED', 'date': '2018-09-12T21:27:25.241689'},
+        {'id': 615064591, 'state': 'CANCELED', 'date': '2018-10-14T08:21:33.419441'}
+    ]
+
+    # Фильтрация по состоянию 'EXECUTED'
+    filtered_data = filter_by_state(data)
+    print("Фильтрация по статусу 'EXECUTED':", filtered_data)
+
+    # Фильтрация по состоянию 'CANCELED'
+    canceled_data = filter_by_state(data, 'CANCELED')
+    print("Фильтрация по статусу 'CANCELED':", canceled_data)
+
+    # Сортировка по дате (по убыванию)
+    sorted_data_desc = sort_by_date(data)
+    print("Сортировка по убыванию:", sorted_data_desc)
+
+    # Сортировка по дате (по возрастанию)
+    sorted_data_asc = sort_by_date(data, reverse=False)
+    print("Сортировка по возрастанию:", sorted_data_asc)
 
 
 if __name__ == "__main__":
