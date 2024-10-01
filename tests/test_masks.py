@@ -1,6 +1,7 @@
 import pytest
 from src.masks import get_mask_card_number, get_mask_account
 from src.widget.mask_account_card import mask_account_card
+from src.widget.mask_account_card import get_date
 
 # Фикстура для тестирования
 @pytest.fixture
@@ -37,3 +38,13 @@ def test_mask_account_card_account_info():
 def test_mask_account_card_invalid_data():
     with pytest.raises(ValueError):
         mask_account_card("Некорректные данные")
+
+
+def test_get_date():
+    # Тест правильного формата даты
+    date_str = "2024-03-11T02:26:18.671407"
+    assert get_date(date_str) == "11.03.2024"
+
+    # Тест некорректного формата даты
+    with pytest.raises(ValueError):
+        get_date("некорректная_дата")
