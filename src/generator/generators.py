@@ -1,6 +1,3 @@
-from tests.test_generators import transactions
-
-
 def filter_by_currency(transactions, currency_code):
     """
     Генератор, который фильтрует транзакции по валюте.
