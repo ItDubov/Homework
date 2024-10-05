@@ -22,3 +22,32 @@
 ### Покрытие:
 - Покрытие тестами 80% кода.
 - Использованы фикстуры для создания тестовых данных и параметризация для тестирования различных сценариев.
+
+# Новый функционал
+
+### Генераторы
+
+- `filter_by_currency`: фильтрация транзакций по валюте.
+- `transaction_descriptions`: возвращает описание каждой транзакции.
+- `card_number_generator`: генерация номеров карт в формате XXXX XXXX XXXX XXXX.
+
+### Примеры использования
+
+#### filter_by_currency
+```python
+transactions = [...]  # Список транзакций
+usd_transactions = filter_by_currency(transactions, "USD")
+for _ in range(2):
+    print(next(usd_transactions))
+```
+#### transaction_descriptions
+```python
+descriptions = transaction_descriptions(transactions)
+for _ in range(5):
+    print(next(descriptions))
+```
+#### card_number_generator
+```python
+for card_number in card_number_generator(1, 5):
+    print(card_number)
+```
