@@ -1,3 +1,6 @@
+from tests.test_generators import transactions
+
+
 def filter_by_currency(transactions, currency_code):
     """
     Генератор, который фильтрует транзакции по валюте.
@@ -32,3 +35,5 @@ def card_number_generator(start, end):
         card_str = f"{number:016d}"  # Преобразуем число в строку из 16 цифр
         formatted_card = f"{card_str[:4]} {card_str[4:8]} {card_str[8:12]} {card_str[12:]}"
         yield formatted_card
+
+
