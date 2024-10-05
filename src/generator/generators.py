@@ -1,4 +1,6 @@
-def filter_by_currency(transactions, currency_code):
+from typing import Iterator
+
+def filter_by_currency(transactions: list[dict], currency_code: str) -> Iterator[dict]:
     """
     Генератор, который фильтрует транзакции по валюте.
 
@@ -10,7 +12,7 @@ def filter_by_currency(transactions, currency_code):
         if transaction.get("operationAmount", {}).get("currency", {}).get("code") == currency_code:
             yield transaction
 
-def transaction_descriptions(transactions):
+def transaction_descriptions(transactions: list[dict]) -> Iterator[str]:
     """
     Генератор, который возвращает описание каждой транзакции.
 
@@ -20,7 +22,7 @@ def transaction_descriptions(transactions):
     for transaction in transactions:
         yield transaction.get("description", "")
 
-def card_number_generator(start, end):
+def card_number_generator(start: int, end: int) -> Iterator[int]:
     """
     Генератор, который выдает номера карт в формате XXXX XXXX XXXX XXXX.
 
@@ -30,7 +32,7 @@ def card_number_generator(start, end):
     """
     for number in range(start, end + 1):
         card_str = f"{number:016d}"  # Преобразуем число в строку из 16 цифр
-        formatted_card = f"{card_str[:4]} {card_str[4:8]} {card_str[8:12]} {card_str[12:]}"
+        formatted_card = int(f"{card_str[:4]} {card_str[4:8]} {card_str[8:12]} {card_str[12:]}")
         yield formatted_card
 
 

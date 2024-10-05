@@ -4,7 +4,7 @@ from src.processing.processing import filter_by_state, sort_by_date
 from src.generator.generators import filter_by_currency, transaction_descriptions, card_number_generator
 
 
-def main():
+def main() -> None:
     """
     Основная функция для демонстрации работы различных функций:
     маскирования, фильтрации и сортировки данных.
