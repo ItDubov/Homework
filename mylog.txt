@@ -1,0 +1,4 @@
+INFO:src.decorator.decorators:Запуск функции: my_function с аргументами: (1, 2), {}
+INFO:src.decorator.decorators:my_function ok
+Запуск функции: my_function с аргументами: (1, 2), {}
+my_function ok
