@@ -1,7 +1,11 @@
+import os
+import json
 from src.masks import get_mask_account, get_mask_card_number
 from src.widget.mask_account_card import mask_account_card, get_date
 from src.processing.processing import filter_by_state, sort_by_date
 from src.generator.generators import filter_by_currency, transaction_descriptions, card_number_generator
+from src.api.utils import load_transactions
+from src.api.external_api import convert_to_rub
 
 
 def main() -> None:
@@ -117,6 +121,13 @@ def main() -> None:
             "to": "Счет 74489636417521191160"
         }
     ]
+    # Использование API для конвертации валют в рубли
+    for transaction in transactions:
+        amount_in_rub = convert_to_rub({
+            "amount": float(transaction["operationAmount"]["amount"]),
+            "currency": transaction["operationAmount"]["currency"]["code"]
+        })
+        print(f"Транзакция {transaction['id']}: сумма в рублях {amount_in_rub}")
 
     # Использование генератора filter_by_currency
     print("USD транзакции:")
