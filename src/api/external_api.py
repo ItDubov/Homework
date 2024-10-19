@@ -2,6 +2,7 @@ import requests
 import os
 from dotenv import load_dotenv
 
+
 # Загружаем переменные окружения
 load_dotenv()
 
@@ -10,6 +11,7 @@ API_URL = "https://api.apilayer.com/exchangerates_data/convert"
 
 if not API_KEY:
     raise ValueError("API_KEY is not set. Please check your .env file.")
+
 
 def convert_to_rub(transaction):
     """
