@@ -1,8 +1,9 @@
-from src.masks import get_mask_account, get_mask_card_number
-from src.widget.mask_account_card import mask_account_card, get_date
-from src.processing.processing import filter_by_state, sort_by_date
-from src.generator.generators import filter_by_currency, transaction_descriptions, card_number_generator
 from src.api.external_api import convert_to_rub
+from src.api.utils import load_transactions
+from src.generator.generators import card_number_generator, filter_by_currency, transaction_descriptions
+from src.masks import get_mask_account, get_mask_card_number
+from src.processing.processing import filter_by_state, sort_by_date
+from src.widget.mask_account_card import get_date, mask_account_card
 
 
 def main() -> None:
