@@ -1,7 +1,7 @@
 import pytest
-from src.masks import get_mask_card_number, get_mask_account
-from src.widget.mask_account_card import mask_account_card
-from src.widget.mask_account_card import get_date
+
+from src.masks import get_mask_account, get_mask_card_number
+from src.widget.mask_account_card import get_date, mask_account_card
 
 
 # Фикстура для тестирования

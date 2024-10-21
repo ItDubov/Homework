@@ -1,7 +1,6 @@
 import pytest
-from src.generator.generators import filter_by_currency
-from src.generator.generators import transaction_descriptions
-from src.generator.generators import card_number_generator
+
+from src.generator.generators import card_number_generator, filter_by_currency, transaction_descriptions
 
 transactions = [
     {

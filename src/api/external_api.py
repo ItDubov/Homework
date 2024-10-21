@@ -1,7 +1,7 @@
-import requests
 import os
-from dotenv import load_dotenv
 
+import requests
+from dotenv import load_dotenv
 
 # Загружаем переменные окружения
 load_dotenv()
