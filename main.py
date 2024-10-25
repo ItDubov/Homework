@@ -1,10 +1,12 @@
 import os
+#import pandas
 import re
 from src.api.external_api import convert_to_rub
 from src.api.utils import load_transactions
-from src.generator.generators import card_number_generator, filter_by_currency, transaction_descriptions
+#from src.generator.generators import card_number_generator, filter_by_currency, transaction_descriptions
 from src.masks import get_mask_account, get_mask_card_number
-from src.processing.processing import filter_by_state, sort_by_date
+#from src.processing.processing import filter_by_state, sort_by_date
+from csv_excel.data_loaders import load_transactions_from_csv, load_transactions_from_excel
 
 
 def extract_card_number(card_info: str) -> str:
@@ -96,6 +98,14 @@ def main() -> None:
                 print(f"Транзакция ID: {transaction_id}, Дата: {transaction_date}, "
                       f"Отправитель: {masked_from}, Получатель: {masked_to}, "
                       f"Сумма: Не указана.")
+
+
+# Считывание из CSV
+csv_transactions = load_transactions_from_csv("data/transactions.csv")
+print(csv_transactions)
+# Считывание из Excel
+excel_transactions = load_transactions_from_excel("data/transactions.xlsx")
+print(excel_transactions)
 
 if __name__ == "__main__":
     main()
