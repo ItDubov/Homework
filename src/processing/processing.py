@@ -1,4 +1,5 @@
 from typing import Dict, List, Optional
+from datetime import datetime
 
 
 def filter_by_state(data: List[Dict], state: Optional[str] = 'EXECUTED') -> List[Dict]:
@@ -20,4 +21,12 @@ def sort_by_date(data: List[Dict], reverse: bool = True) -> List[Dict]:
     :param reverse: Порядок сортировки (по умолчанию True — убывание)
     :return: Отсортированный список операций
     """
-    return sorted(data, key=lambda x: x['date'], reverse=reverse)
+    # Фильтруем операции, у которых есть корректная дата
+    data_with_dates = [item for item in data if 'date' in item]
+
+    # Сортируем по дате
+    return sorted(
+        data_with_dates,
+        key=lambda x: datetime.fromisoformat(x['date']),
+        reverse=reverse
+    )
