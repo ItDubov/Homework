@@ -1,9 +1,11 @@
 import logging
 import os
 
+
 # Настройка логгера для модуля masks
 logger = logging.getLogger('masks_logger')
 logger.setLevel(logging.DEBUG)
+
 
 # Настройка file_handler для записи логов в файл
 log_dir = "logs"

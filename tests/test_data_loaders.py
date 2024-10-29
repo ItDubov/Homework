@@ -1,6 +1,6 @@
 from unittest.mock import patch
 import pandas as pd
-from csv_excel.data_loaders import load_transactions_from_csv
+from src.csv_excel import load_transactions_from_csv
 
 
 @patch("pandas.read_csv")
