@@ -1,9 +1,14 @@
-from src.csv_excel.data_loaders import (load_transactions_from_csv,
-                                        load_transactions_from_excel,
-                                        load_transactions_from_json
-                                        )
+from src.csv_excel.data_loaders import (
+    load_transactions_from_csv,
+    load_transactions_from_excel,
+    load_transactions_from_json
+)
+from src.filterings.filtering import (
+    filter_transactions_by_description,
+    filter_transactions_by_status,
+    count_transactions_by_category
+)
 import src.filterings.transaction_processing as processing
-from src.filterings.filtering import filter_transactions_by_description
 
 
 def main():
@@ -36,7 +41,7 @@ def main():
         if status not in ["EXECUTED", "CANCELED", "PENDING"]:
             print(f"Статус операции '{status}' недоступен.")
             continue
-        transactions = processing.filter_transactions_by_status(transactions, status)
+        transactions = filter_transactions_by_status(transactions, status)
         print(f"Операции отфильтрованы по статусу '{status}'")
         break
 
@@ -54,6 +59,12 @@ def main():
     if search_choice == "да":
         search_str = input("Введите ключевое слово: ").strip()
         transactions = filter_transactions_by_description(transactions, search_str)
+
+    # Добавлено: Подсчет транзакций по категориям
+    category_choice = input("Введите категорию для подсчета операций или оставьте пустым, чтобы пропустить: ").strip()
+    if category_choice:
+        category_count = count_transactions_by_category(transactions, [category_choice])
+        print(f"Количество операций для категории '{category_choice}': {category_count.get(category_choice, 0)}")
 
     if not transactions:
         print("Не найдено ни одной транзакции, подходящей под ваши условия фильтрации.")

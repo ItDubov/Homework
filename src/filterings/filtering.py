@@ -1,5 +1,5 @@
 import re
-from collections import defaultdict
+from collections import Counter
 
 
 def filter_transactions_by_description(transactions, search_str):
@@ -15,18 +15,29 @@ def filter_transactions_by_description(transactions, search_str):
 
 
 def count_transactions_by_category(transactions, categories):
-    """
-    Подсчитывает количество транзакций по категориям.
+    """Подсчитывает количество операций по категориям.
 
-    :param transactions: Список словарей с транзакциями.
-    :param categories: Список категорий для подсчета.
-    :return: Словарь с количеством транзакций в каждой категории.
+    Args:
+        transactions (list): Список транзакций (словарей).
+        categories (list): Список категорий для подсчета.
+
+    Returns:
+        dict: Словарь вида {"категория": количество операций}.
     """
-    category_count = defaultdict(int)
-    for tx in transactions:
-        description = tx.get("description", "").lower()
-        for category in categories:
-            if category.lower() in description:
-                category_count[category] += 1
-                break  # Предполагаем, что одна транзакция относится к одной категории
-    return dict(category_count)
+    category_counter = Counter(
+        tx.get("description", "") for tx in transactions if tx.get("description", "") in categories
+    )
+    return dict(category_counter)
+
+def filter_transactions_by_status(transactions, status):
+    """Фильтрует транзакции по заданному статусу, независимо от регистра.
+
+    Args:
+        transactions (list): Список транзакций (словарей).
+        status (str): Статус, по которому выполняется фильтрация.
+
+    Returns:
+        list: Список транзакций, отфильтрованных по статусу.
+    """
+    normalized_status = status.upper()
+    return [tx for tx in transactions if tx.get("status", "").upper() == normalized_status]
