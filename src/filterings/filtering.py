@@ -40,4 +40,5 @@ def filter_transactions_by_status(transactions, status):
         list: Список транзакций, отфильтрованных по статусу.
     """
     normalized_status = status.upper()
-    return [tx for tx in transactions if tx.get("status", "").upper() == normalized_status]
+    return [tx for tx in transactions if tx.get("state", "").upper() == normalized_status]
+
